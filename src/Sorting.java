@@ -31,9 +31,23 @@ public class Sorting {
     quicksort(a, partition+1, h);
   }
   
+  //nth smallest element
+  public static int quickSelect(int[]a, int l, int h, int n) {
+    int partition = partition(a, l, h);
+    if(partition == n) {
+      return a[n-1];
+    }
+    if(n < partition) {
+      return quickSelect(a, l, partition-1, n);
+    } else {
+      return quickSelect(a, partition+1, h, n);
+    }
+  }
+  
   public static void main(String[] args) {
-    int []a = new int[]{2,3,4,1,5 };
+    int []a = new int[]{22,33,44,11,55 };
     quicksort(a, 0, a.length-1);
     System.out.println(Arrays.toString(a));
+    System.out.println(quickSelect(a, 0, a.length-1, 4));
   }
 }
